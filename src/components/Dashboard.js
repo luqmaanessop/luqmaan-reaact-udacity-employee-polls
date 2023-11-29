@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+import Card from "./Card";
+import {connect} from "react-redux";
 
-const Dashboard = () => {
+const Dashboard = ({authedUser, questions, users}) => {
   const [showUnanswered, setShowUnanswered] = useState(true);
+
+  {questions.map((question)=> {
+    console.log(question);
+  })}
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-md">
@@ -23,15 +29,27 @@ const Dashboard = () => {
       {showUnanswered ? (
         <div>
           <h2 className="text-xl font-semibold mt-4">New Questions</h2>
-          <ul className="list-disc pl-6 mt-2">
-            {/* TODO: filter new questions unanswered */}
+          <ul className="list-none mt-2">
+                {questions
+                    .filter((question) => (!question.optionOne.votes.includes(authedUser.id)
+                    && !question.optionTwo.votes.includes(authedUser.id))).map((question) => (
+                        <li key={question.id} className='mb-2'>
+                            <Card question={question} author={users[question.author]}/>
+                        </li>
+                    ))}
           </ul>
         </div>
       ) : (
         <div>
           <h2 className="text-xl font-semibold mt-4">Answered Questions</h2>
-          <ul className="list-disc pl-6 mt-2">
-            {/* TODO: filter new questions answered */}
+          <ul className="list-none mt-2">
+                {questions
+                    .filter((question) => (question.optionOne.votes.includes(authedUser.id)
+                    || question.optionTwo.votes.includes(authedUser.id))).map((question) => (
+                        <li key={question.id} className='mb-2'>
+                            <Card question={question} author={users[question.author]}/>
+                        </li>
+                    ))}
           </ul>
         </div>
       )}
@@ -39,4 +57,13 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = ({authedUser, questions, users}) => ({
+  authedUser,
+  questions: Object.values(questions).sort(
+      (a, b) => b.timestamp - a.timestamp
+  ),
+  users,
+});
+
+export default connect(mapStateToProps)(Dashboard);
+

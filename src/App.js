@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 
 import {handleInitialData} from "./actions/shared";
 import {connect} from "react-redux";
+import {Route, Routes} from "react-router-dom";
 
 import LoginForm from './components/LoginForm';
-import Card from './components/Card';
+import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './components/Dashboard';
 import Leaderboard from './components/Leaderboard';
 import Nav from './components/Nav';
@@ -18,12 +19,13 @@ function App({dispatch, loggedIn}) {
   return (
     <div className="App">
       {loggedIn && <Nav />}
-      <LoginForm />
-      <Card />
-      <Dashboard />
-      <Leaderboard />
-      <NewPoll />
-      <PollPage />
+            <Routes>
+                <Route path="/login" exact element={<LoginForm/>}/>
+                <Route path="/" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
+                <Route path="/leaderboard" exact element={<PrivateRoute><Leaderboard/></PrivateRoute>}/>
+                <Route path="/questions/:id" element={<PrivateRoute><PollPage/></PrivateRoute>}/>
+                <Route path="/new" exact element={<PrivateRoute><NewPoll/></PrivateRoute>}/>
+            </Routes>
     </div>
   );
 }

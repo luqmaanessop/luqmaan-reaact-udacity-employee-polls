@@ -24,8 +24,8 @@ const Login = () => {
     };
 
     return (<div className="bg-blue-100 p-6 rounded-md">
-    <h1 className="text-2xl mb-4">Login:</h1>
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <h1 className="text-2xl mb-4 text-center">Login:</h1>
+    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
       <div>
         <label htmlFor="username" className="block text-blue-700">Username</label>
         <input

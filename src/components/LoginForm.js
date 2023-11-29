@@ -1,6 +1,9 @@
+import {connect} from "react-redux";
+import {Navigate} from "react-router-dom";
 import {useState} from "react";
+import {handleLogin} from "../actions/authedUser";
 
-const Login = () => {
+const Login = ({dispatch, loggedIn}) => {
     const [username, setUsername] = useState("sarahedo");
     const [password, setPassword] = useState("password123");
 
@@ -15,12 +18,10 @@ const Login = () => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // TODO: handle dispatch things
-
-        setUsername("");
-        setPassword("");
+      e.preventDefault();
+      dispatch(handleLogin(username, password));
+      setUsername("");
+      setPassword("");
     };
 
     return (<div className="bg-blue-100 p-6 rounded-md">
@@ -61,4 +62,8 @@ const Login = () => {
     );
 };
 
-export default Login;
+const mapStateToProps = ({authedUser}) => ({
+  loggedIn: !!authedUser,
+});
+
+export default connect(mapStateToProps)(Login);

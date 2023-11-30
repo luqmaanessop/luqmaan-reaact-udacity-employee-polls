@@ -17,7 +17,7 @@ const Dashboard = ({authedUser, questions, users}) => {
       </button>
       <button
         onClick={() => setShowUnanswered(false)}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md"
+        className="bg-green-500 text-white px-4 py-2 rounded-md"
       >
         Answered Polls
       </button>

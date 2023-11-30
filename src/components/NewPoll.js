@@ -1,23 +1,27 @@
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
+import {connect} from "react-redux";
 
-const NewPoll = () => {
+const NewPoll = ({dispatch}) => {
+  const navigate = useNavigate();
     const [firstOption, setFirstOption] = useState("");
     const [secondOption, setSecondOption] = useState("");
 
     const handleFirstOptionChange = (e) => {
-        const value = e.target.value;
-        setFirstOption(value);
+      const value = e.target.value;
+      setFirstOption(value);
     };
 
     const handleSecondOptionChange = (e) => {
-        const value = e.target.value;
-        setSecondOption(value);
+      const value = e.target.value;
+      setSecondOption(value);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
 
-        // TODO: dispatch some coolness here and possibly navigate to the homepage
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // dispatch(handleAddQuestion(firstOption, secondOption));
+      navigate("/");
     };
 
     return (
@@ -74,4 +78,4 @@ const NewPoll = () => {
     );
 };
 
-export default NewPoll;
+export default connect()(NewPoll);

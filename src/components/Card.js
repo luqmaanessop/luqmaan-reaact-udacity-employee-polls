@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import {formatDate} from '../utils/helpers'
+
 const Card = ({question, author}) => {
 
-  const timestampDate = new Date(question.timestamp).toDateString();
+  const timestampDate = formatDate(question.timestamp);
 
   return (
     <Link to={'questions/' + question.id} className="block border p-4 rounded-md">

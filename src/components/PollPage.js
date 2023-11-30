@@ -2,6 +2,18 @@ import {Navigate, useNavigate, useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import {handleAddAnswer} from "../actions/questions";
 
+export const calculateVotes = (option, question) => {
+    const numVotes = question.optionOne.votes.length + question.optionTwo.votes.length;
+    switch (option) {
+        case "1":
+            return question.optionOne.votes.length / numVotes * 100;
+        case "2":
+            return question.optionTwo.votes.length / numVotes * 100;
+        default:
+            return "";
+    }
+};
+
 const PollPage = ({dispatch, authedUser, question, author}) => {
     const navigate = useNavigate();
 
@@ -23,18 +35,6 @@ const PollPage = ({dispatch, authedUser, question, author}) => {
         e.preventDefault();
         dispatch(handleAddAnswer(question.id, "optionTwo"));
         navigate("/");
-    };
-
-    const calculateVotes = (option, question) => {
-        const numVotes = question.optionOne.votes.length + question.optionTwo.votes.length;
-        switch (option) {
-            case "1":
-                return question.optionOne.votes.length / numVotes * 100;
-            case "2":
-                return question.optionTwo.votes.length / numVotes * 100;
-            default:
-                return "";
-        }
     };
 
     return (

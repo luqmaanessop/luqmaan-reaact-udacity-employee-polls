@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import {connect} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {handleAddQuestion} from '../actions/questions';
@@ -11,13 +11,22 @@ const NewPoll = ({dispatch}) => {
     const handleFirstOptionChange = (e) => {
       const value = e.target.value;
       setFirstOption(value);
+      checkInput();
     };
 
     const handleSecondOptionChange = (e) => {
       const value = e.target.value;
       setSecondOption(value);
+      checkInput();
     };
 
+    const [disabled, setDisabled] = useState(true)
+
+	const checkInput = () => {
+		if (firstOption !== '' && secondOption !== '') {
+			setDisabled(false)
+		}
+	}
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -25,6 +34,10 @@ const NewPoll = ({dispatch}) => {
       dispatch(handleAddQuestion(firstOption, secondOption));
       navigate("/");
     }
+
+	useEffect(() => {
+	    checkInput()
+	}, [])
 
     return (
         <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-md mt-10">
@@ -70,6 +83,7 @@ const NewPoll = ({dispatch}) => {
                         type="submit"
                         className="py-2 px-4 bg-blue-500 text-white rounded-md"
                         data-testid="submit-poll"
+                        disabled={disabled}
                     >
                         Submit
                     </button>

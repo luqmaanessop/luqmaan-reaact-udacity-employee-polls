@@ -49,6 +49,7 @@ const Login = ({dispatch, loggedIn}) => {
     <button
       type="submit"
       className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+      data-testid="submit-login"
     >
       Login
     </button>

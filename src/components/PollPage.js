@@ -1,21 +1,20 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {connect} from "react-redux";
+import {handleAddAnswer} from "../actions/questions";
 
 const PollPage = ({dispatch, authedUser, question, author}) => {
     const navigate = useNavigate();
 
+
     const handleOptionOne = (e) => {
         e.preventDefault();
-
-        // TODO: dispatch something
-
+        dispatch(handleAddAnswer(question.id, "optionOne"));
         navigate("/");
     };
 
     const handleOptionTwo = (e) => {
         e.preventDefault();
-
-        // TODO: dispatch something
+        dispatch(handleAddAnswer(question.id, "optionTwo"));
         navigate("/");
     };
 

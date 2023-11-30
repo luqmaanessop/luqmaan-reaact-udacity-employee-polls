@@ -11,6 +11,7 @@ import Leaderboard from './components/Leaderboard';
 import Nav from './components/Nav';
 import NewPoll from './components/NewPoll';
 import PollPage from './components/PollPage';
+import Error404 from "./components/404";
 
 function App({dispatch, loggedIn}) {
   useEffect(() => {
@@ -24,7 +25,8 @@ function App({dispatch, loggedIn}) {
                 <Route path="/" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
                 <Route path="/leaderboard" exact element={<PrivateRoute><Leaderboard/></PrivateRoute>}/>
                 <Route path="/questions/:id" element={<PrivateRoute><PollPage/></PrivateRoute>}/>
-                <Route path="/new" exact element={<PrivateRoute><NewPoll/></PrivateRoute>}/>
+                <Route path="/add" exact element={<PrivateRoute><NewPoll/></PrivateRoute>}/>
+                <Route path="/404" exact element={<Error404/>}/>
             </Routes>
     </div>
   );

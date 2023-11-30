@@ -14,7 +14,7 @@ const Nav = ({dispatch, authedUserId}) => {
             <div className="flex space-x-4">
                 <Link to="/" className="text-white">Home</Link>
                 <Link to="/leaderboard" className="text-white">Leaderboard</Link>
-                <Link to="/new" className="text-white">New Poll</Link>
+                <Link to="/add" className="text-white">New Poll</Link>
             </div>
             <span className="text-white" data-testid="user-information">User: {authedUserId}</span>
             <button onClick={logout} className="text-white">Logout</button>

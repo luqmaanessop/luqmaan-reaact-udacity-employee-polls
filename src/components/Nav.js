@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
+import {connect} from "react-redux";
+import {logoutAuthedUser} from '../actions/authedUser'
 
-const Nav = () => {
+const Nav = ({dispatch, authedUserId}) => {
 
     const logout = (e) => {
         e.preventDefault();
 
-        // TODO: handle logout action - dispatch something
+        dispatch(logoutAuthedUser());
     };
-    const authedUserId = 'guy';
-
     return (
         <nav className="flex items-center justify-between bg-blue-500 p-4">
             <div className="flex space-x-4">
@@ -22,4 +22,10 @@ const Nav = () => {
     );
 };
 
-export default Nav;
+
+const mapStateToProps = ({authedUser}) => ({
+  authedUserId: authedUser.id,
+});
+
+
+export default connect(mapStateToProps)(Nav);

@@ -42,7 +42,7 @@ const PollPage = ({dispatch, authedUser, question, author}) => {
                 </button>
 
                 <button onClick={handleOptionTwo}
-                    className="p-2 rounded-xl"
+                    className="p-2 rounded-xl  hover:shadow-xl transition"
                 >
                     <div>
                         <p className="font-bold mb-2">{question.optionTwo.text}</p>

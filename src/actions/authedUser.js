@@ -25,3 +25,9 @@ export function handleLogin(username, password) {
         }
     };
 }
+
+export function handleLogout() {
+    return (dispatch) => {
+        return dispatch(logoutAuthedUser());
+    };
+}

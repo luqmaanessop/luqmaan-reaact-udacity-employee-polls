@@ -1,6 +1,7 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {handleAddQuestion} from '../actions/questions';
 
 const NewPoll = ({dispatch}) => {
   const navigate = useNavigate();
@@ -20,9 +21,10 @@ const NewPoll = ({dispatch}) => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      // dispatch(handleAddQuestion(firstOption, secondOption));
+      console.log('add new poll');
+      dispatch(handleAddQuestion(firstOption, secondOption));
       navigate("/");
-    };
+    }
 
     return (
         <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-md">

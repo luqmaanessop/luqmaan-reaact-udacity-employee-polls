@@ -1,5 +1,4 @@
 import {connect} from "react-redux";
-import {Navigate} from "react-router-dom";
 import {useState} from "react";
 import {handleLogin} from "../actions/authedUser";
 

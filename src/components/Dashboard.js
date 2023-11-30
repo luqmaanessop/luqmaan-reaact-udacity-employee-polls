@@ -5,10 +5,6 @@ import {connect} from "react-redux";
 const Dashboard = ({authedUser, questions, users}) => {
   const [showUnanswered, setShowUnanswered] = useState(true);
 
-  {questions.map((question)=> {
-    console.log(question);
-  })}
-
   return (
     <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-md">
       <h1 className="text-3xl font-bold mb-4">Dashboard:</h1>

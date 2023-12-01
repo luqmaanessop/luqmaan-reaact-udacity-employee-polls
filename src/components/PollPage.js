@@ -2,6 +2,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { useEffect, useState } from 'react';
 import { handleAddAnswer } from "../actions/questions";
+import clsx from 'clsx';
 
 export const calculateVotes = (option, question) => {
   const numVotes =
@@ -60,7 +61,7 @@ const PollPage = ({ dispatch, authedUser, question, author }) => {
             <h3 className="font-bold text-md">Option 1:</h3>
             <p className="mb-2">{question.optionOne.text}</p>
             {voted && (
-                <p className="text-md font-medium">
+                <p className={clsx("text-md font-medium", question.optionOne.votes.length < question.optionTwo.votes.length ? "text-red-600" : "text-green-600")}>
                 Votes: {question.optionOne.votes.length} (
                 {calculateVotes("1", question)}) %
                 </p>
@@ -70,7 +71,7 @@ const PollPage = ({ dispatch, authedUser, question, author }) => {
             <h3 className="font-bold text-md">Option 2:</h3>
             <p className="mb-2">{question.optionTwo.text}</p>
             {voted && (
-                <p className="text-md font-medium">
+                <p className={clsx("text-md font-medium", question.optionOne.votes.length > question.optionTwo.votes.length ? "text-red-600" : "text-green-600")}>
                 Votes: {question.optionTwo.votes.length} (
                 {calculateVotes("2", question)}) %
                 </p>

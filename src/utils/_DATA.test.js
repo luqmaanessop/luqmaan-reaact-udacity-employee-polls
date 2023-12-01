@@ -3,25 +3,9 @@ import {
   _saveQuestionAnswer,
   _getUsers,
   _getQuestions,
-} from './_Data';
+} from './_DATA';
 
-describe('_Data.js Tests', () => {
-  let originalQuestions;
-  let originalUsers;
-
-  beforeAll(async () => {
-    originalQuestions = await _getQuestions();
-    originalUsers = await _getUsers();
-  });
-
-  afterAll(() => {
-    // Reset data after all tests
-    jest.restoreAllMocks();
-    jest.resetModules();
-    // _Data.questions = { ...originalQuestions };
-    // _Data.users = { ...originalUsers };
-  });
-
+describe('_DATA.js Tests', () => {
   let questions;
   let users;
 

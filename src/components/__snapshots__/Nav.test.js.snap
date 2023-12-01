@@ -6,37 +6,45 @@ Object {
   "baseElement": <body>
     <div>
       <nav
-        class="flex items-center justify-between bg-blue-500 p-4"
+        class="sticky top-0 flex items-center justify-between bg-blue-500 p-4"
       >
         <div
-          class="flex space-x-4"
+          class="flex items-center"
+        >
+          <img
+            alt="Profile"
+            class="mr-1 h-6 w-6 rounded-full overflow-hidden"
+          />
+          <span
+            class="text-white"
+            data-testid="user-information"
+          >
+            User: 
+            sarahedo
+          </span>
+        </div>
+        <div
+          class="flex"
         >
           <a
-            class="text-white"
+            class="text-white mr-4 hover:font-medium"
             href="/"
           >
             Home
           </a>
           <a
-            class="text-white"
+            class="text-white mr-4 hover:font-medium"
             href="/leaderboard"
           >
             Leaderboard
           </a>
           <a
-            class="text-white"
+            class="text-white mr-4 hover:font-medium"
             href="/add"
           >
             New Poll
           </a>
         </div>
-        <span
-          class="text-white"
-          data-testid="user-information"
-        >
-          User: 
-          sarahedo
-        </span>
         <button
           class="text-white"
         >
@@ -47,37 +55,45 @@ Object {
   </body>,
   "container": <div>
     <nav
-      class="flex items-center justify-between bg-blue-500 p-4"
+      class="sticky top-0 flex items-center justify-between bg-blue-500 p-4"
     >
       <div
-        class="flex space-x-4"
+        class="flex items-center"
+      >
+        <img
+          alt="Profile"
+          class="mr-1 h-6 w-6 rounded-full overflow-hidden"
+        />
+        <span
+          class="text-white"
+          data-testid="user-information"
+        >
+          User: 
+          sarahedo
+        </span>
+      </div>
+      <div
+        class="flex"
       >
         <a
-          class="text-white"
+          class="text-white mr-4 hover:font-medium"
           href="/"
         >
           Home
         </a>
         <a
-          class="text-white"
+          class="text-white mr-4 hover:font-medium"
           href="/leaderboard"
         >
           Leaderboard
         </a>
         <a
-          class="text-white"
+          class="text-white mr-4 hover:font-medium"
           href="/add"
         >
           New Poll
         </a>
       </div>
-      <span
-        class="text-white"
-        data-testid="user-information"
-      >
-        User: 
-        sarahedo
-      </span>
       <button
         class="text-white"
       >

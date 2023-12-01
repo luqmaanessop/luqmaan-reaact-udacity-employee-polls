@@ -14,15 +14,15 @@ describe("Nav", () => {
 
   it("should match snapshot", async () => {
 
-    const component = render(
+    const view = render(
       <Provider store={store}>
           <BrowserRouter>
               <Nav/>
           </BrowserRouter>
       </Provider>
     );
-    expect(component).toBeDefined();
-    expect(component).toMatchSnapshot();
+    expect(view).toBeDefined();
+    expect(view).toMatchSnapshot();
   })
 
   it("Should display username of logged-in user", () => {

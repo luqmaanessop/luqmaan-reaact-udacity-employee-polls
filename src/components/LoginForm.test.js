@@ -2,11 +2,9 @@ import * as React from "react";
 import LoginForm from "../components/LoginForm";
 import { render, screen, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { MemoryRouter } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../store";
-import {handleInitialData} from "../actions/shared";
 
 afterEach(() => {
   cleanup(); // This will unmount the component and clear the DOM

@@ -1,8 +1,15 @@
-import { legacy_createStore as createStore } from "redux";
+import { configureStore } from '@reduxjs/toolkit'
 
-import reducer from "./reducers";
-import middleware from "./middleware";
+import logger from "./middleware/logger";
+import authedUser from "./reducers/authedUser";
+import questions from "./reducers/questions";
+import users from "./reducers/users";
 
-const store = createStore(reducer, middleware);
+
+const store = configureStore({reducer: {
+  authedUser,
+  questions,
+  users
+}, middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)});
 
 export default store;

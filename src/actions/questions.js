@@ -1,5 +1,5 @@
 import {saveQuestion, saveQuestionAnswer} from "../utils/api";
-import {addAnswerUser, addQuestionUser} from "./users";
+import { ADD_QUESTION_USER, ADD_ANSWER_USER } from "../features/users/usersSlice";
 import { ADD_QUESTION, ADD_ANSWER_QUESTION } from '../features/questions/questionsSlice';
 
 
@@ -11,7 +11,7 @@ export function handleAddQuestion(firstOption, secondOption) {
         return saveQuestion(firstOption, secondOption, authedUser)
             .then((question) => {
                 dispatch(ADD_QUESTION(question));
-                dispatch(addQuestionUser(question))
+                dispatch(ADD_QUESTION_USER(question))
             })
     };
 }
@@ -29,7 +29,7 @@ export function handleAddAnswer(questionId, answer) {
         return saveQuestionAnswer(authedUser.id, questionId, answer)
             .then(() => {
                 dispatch(ADD_ANSWER_QUESTION(submittedAnswer));
-                dispatch(addAnswerUser(authedUser.id, questionId, answer));
+                dispatch(ADD_ANSWER_USER(submittedAnswer));
             });
     };
 }

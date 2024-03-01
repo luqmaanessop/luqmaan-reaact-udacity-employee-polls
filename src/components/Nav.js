@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import {connect} from "react-redux";
-import {logoutAuthedUser} from '../actions/authedUser'
+import {LOGOUT_AUTHED_USER} from '../features/auth/authSlice'
 
 const Nav = ({dispatch, authedUserId, authedUserIcon}) => {
     return (
@@ -12,7 +12,7 @@ const Nav = ({dispatch, authedUserId, authedUserIcon}) => {
                 <Link to="/leaderboard" className="text-white mr-4 hover:font-medium">Leaderboard</Link>
                 <Link to="/add" className="text-white mr-4 hover:font-medium">New Poll</Link>
             </div>
-            <button onClick={()=>{dispatch(logoutAuthedUser());}} className="text-white">Logout</button>
+            <button onClick={()=>{dispatch(LOGOUT_AUTHED_USER());}} className="text-white">Logout</button>
         </nav>
     );
 };

@@ -60,7 +60,7 @@ const Login = ({dispatch, loggedIn}) => {
 };
 
 const mapStateToProps = ({authedUser}) => ({
-  loggedIn: !!authedUser,
+  loggedIn: !!authedUser.id,
 });
 
 export default connect(mapStateToProps)(Login);

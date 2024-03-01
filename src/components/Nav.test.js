@@ -5,11 +5,11 @@ import "@testing-library/jest-dom/extend-expect";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../store";
-import {setAuthedUser} from "../actions/authedUser";
+import {SET_AUTHED_USER} from "../features/auth/authSlice";
 
 describe("Nav", () => {
   beforeAll(async () => {
-    store.dispatch(setAuthedUser({id: "sarahedo"}));
+    store.dispatch(SET_AUTHED_USER({id: "sarahedo"}));
   });
 
   it("should match snapshot", async () => {

@@ -8,7 +8,7 @@ const PrivateRoute = ({children, loggedIn}) => {
 };
 
 const mapStateToProps = ({authedUser}) => ({
-    loggedIn: !!authedUser,
+    loggedIn: !!authedUser.id,
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

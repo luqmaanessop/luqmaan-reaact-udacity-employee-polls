@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect, useCallback} from "react";
 import {connect} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {handleAddQuestion} from '../actions/questions';
@@ -22,11 +22,11 @@ const NewPoll = ({dispatch}) => {
 
     const [disabled, setDisabled] = useState(true)
 
-	const checkInput = () => {
+	const checkInput = useCallback(() => {
 		if (firstOption !== '' && secondOption !== '') {
 			setDisabled(false)
 		}
-	}
+	}, [firstOption, secondOption])
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -37,7 +37,7 @@ const NewPoll = ({dispatch}) => {
 
 	useEffect(() => {
 	    checkInput()
-	}, [])
+	}, [checkInput])
 
     return (
         <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-md mt-10">

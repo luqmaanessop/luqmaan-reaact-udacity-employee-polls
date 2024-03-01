@@ -44,10 +44,10 @@ const users = createSlice({
       }
     },
     ADD_QUESTION_USER(state, action) {
-      state[action.payload.author].questions.concat(action.qid)
+      state[action.payload.user].questions.concat(action.payload.question)
     },
     ADD_ANSWER_USER(state, action) {
-      state[action.payload.user].answers.question = action.payload.answer
+      state[action.payload.user].answers[action.payload.question] = action.payload.answer
     }
   }
 })

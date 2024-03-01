@@ -23,10 +23,8 @@ const PollPage = ({ dispatch, authedUser, question, author }) => {
   const [voted, setVoted] = useState(false);
 
   useEffect(() => {
-    {   question &&
-        setVoted(question.optionOne.votes.includes(authedUser.id) || question.optionTwo.votes.includes(authedUser.id))
-    }
-  }, []);
+    question && setVoted(question.optionOne.votes.includes(authedUser.id) || question.optionTwo.votes.includes(authedUser.id))
+  }, [authedUser.id, question]);
 
   if (!authedUser || !question || !author) {
     return <Navigate to="/404" />;

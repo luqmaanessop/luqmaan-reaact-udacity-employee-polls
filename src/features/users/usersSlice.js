@@ -15,7 +15,9 @@ const users = createSlice({
     },
     ADD_ANSWER_USER(state, action) {
       const { user, question, answer } = action.payload;
+      // use a temp variable here so the [] works without doing this the proxy object gets confused and cant keep track of the changes trying to be made. Try and only use one [] in a mutation like this.
       const userState = state[user];
+      // Then do the mutation with the temp variable
       userState.answers[question] = answer;
     }
   }

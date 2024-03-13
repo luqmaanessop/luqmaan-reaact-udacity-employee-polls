@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback} from "react";
-import {connect} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {handleAddQuestion} from '../actions/questions';
+import { useDispatch } from "react-redux";
 
-const NewPoll = ({dispatch}) => {
-  const navigate = useNavigate();
+const NewPoll = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [firstOption, setFirstOption] = useState("");
     const [secondOption, setSecondOption] = useState("");
 
@@ -30,7 +31,6 @@ const NewPoll = ({dispatch}) => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log('add new poll');
       dispatch(handleAddQuestion(firstOption, secondOption));
       navigate("/");
     }
@@ -94,4 +94,4 @@ const NewPoll = ({dispatch}) => {
     );
 };
 
-export default connect()(NewPoll);
+export default NewPoll;

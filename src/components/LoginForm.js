@@ -1,11 +1,19 @@
-import {connect} from "react-redux";
 import {useState} from "react";
 import {handleLogin} from "../actions/authedUser";
 import {users} from '../utils/_DATA';
 import {Navigate} from "react-router-dom";
+import { createSelector } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
 
-const Login = ({dispatch, loggedIn}) => {
+const checkLoggedIn = createSelector(
+  (state)=>state.authedUser,
+  (authedUser) => !!authedUser.id
+)
+
+const Login = () => {
   const [username, setUsername] = useState("");
+  const dispatch = useDispatch();
+  const loggedIn = useSelector(checkLoggedIn)
 
   if (loggedIn) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -58,9 +66,4 @@ const Login = ({dispatch, loggedIn}) => {
 
   );
 };
-
-const mapStateToProps = ({authedUser}) => ({
-  loggedIn: !!authedUser.id,
-});
-
-export default connect(mapStateToProps)(Login);
+export default Login;

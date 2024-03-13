@@ -1,13 +1,19 @@
+import { createSelector } from '@reduxjs/toolkit';
 import React from 'react';
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
 
-const Leaderboard = ({users}) => {
+const sortedUserPoints = createSelector(
+    (state) => state.users,
+    (users) => Object.values(users).sort((a, b) => (
+        (Object.keys(b.answers).length + Object.keys(b.questions).length) -
+        (Object.keys(a.answers).length + Object.keys(a.questions).length)
+    )),
+)
+
+const Leaderboard = () => {
+    const users = useSelector(sortedUserPoints);
     const mainLeaders = users.slice(0,3);
     const losers = users.slice(3);
-
-    console.log("mainLeaders", mainLeaders);
-    console.log("losers", losers);
-
 
   return (
     <div className="mt-10 max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md">
@@ -73,12 +79,5 @@ const Leaderboard = ({users}) => {
   );
 };
 
-const mapStateToProps = ({users}) => ({
-  users: Object.values(users).sort((a, b) => (
-    (Object.keys(b.answers).length + Object.keys(b.questions).length) -
-    (Object.keys(a.answers).length + Object.keys(a.questions).length)
-  )),
-});
-
-export default connect(mapStateToProps)(Leaderboard);
+export default Leaderboard;
 

@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import Card from "./Card";
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
+import { createSelector } from "@reduxjs/toolkit";
 
-const Dashboard = ({authedUser, questions, users}) => {
+const orderedQuestions = createSelector(
+  (state) => state.questions,
+  (questions) => Object.values(questions).sort(
+    (a, b) => b.timestamp - a.timestamp
+  ),
+)
+
+const Dashboard = () => {
   const [showUnanswered, setShowUnanswered] = useState(true);
+
+  const { users, authedUser } = useSelector((state) => ({
+    users: state.users,
+    authedUser: state.authedUser,
+  }))
+
+  const questions = useSelector(orderedQuestions);
+
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-md mt-10">
@@ -53,13 +69,5 @@ const Dashboard = ({authedUser, questions, users}) => {
   );
 };
 
-const mapStateToProps = ({authedUser, questions, users}) => ({
-  authedUser,
-  questions: Object.values(questions).sort(
-      (a, b) => b.timestamp - a.timestamp
-  ),
-  users,
-});
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;
 

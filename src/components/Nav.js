@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
-import {connect} from "react-redux";
 import {LOGOUT_AUTHED_USER} from '../features/auth/authSlice'
+import {useSelector} from "react-redux";
 
-const Nav = ({dispatch, authedUserId, authedUserIcon}) => {
+const Nav = ({dispatch}) => {
+    const {authedUserId, authedUserIcon} = useSelector(
+        (state)=> ({
+            authedUserId: state.authedUser.id,
+            authedUserIcon: state.authedUser.avatarURL,
+        })
+    )
+
     return (
         <nav className="sticky top-0 flex items-center justify-between bg-blue-500 p-4">
             <div className="flex items-center">
@@ -17,11 +24,4 @@ const Nav = ({dispatch, authedUserId, authedUserIcon}) => {
     );
 };
 
-
-const mapStateToProps = ({authedUser}) => ({
-  authedUserId: authedUser.id,
-  authedUserIcon: authedUser.avatarURL,
-});
-
-
-export default connect(mapStateToProps)(Nav);
+export default Nav;

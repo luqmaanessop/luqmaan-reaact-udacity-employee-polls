@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import {handleInitialData} from "./actions/shared";
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {Route, Routes} from "react-router-dom";
 
 import LoginForm from './components/LoginForm';
@@ -12,8 +12,12 @@ import Nav from './components/Nav';
 import NewPoll from './components/NewPoll';
 import PollPage from './components/PollPage';
 import Error404 from "./components/404";
+import checkLoggedIn from "./components/LoginForm"
 
-function App({dispatch, loggedIn}) {
+function App() {
+  const dispatch = useDispatch();
+  const loggedIn = useSelector(checkLoggedIn)
+
   useEffect(() => {
       dispatch(handleInitialData());
   });
@@ -31,8 +35,5 @@ function App({dispatch, loggedIn}) {
     </div>
   );
 }
-const mapStateToProps = ({authedUser}) => ({
-    loggedIn: !!authedUser.id,
-});
 
-export default connect(mapStateToProps)(App);
+export default App;

@@ -5,7 +5,7 @@ import {Navigate} from "react-router-dom";
 import { createSelector } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 
-const checkLoggedIn = createSelector(
+export const checkLoggedIn = createSelector(
   (state)=>state.authedUser,
   (authedUser) => !!authedUser.id
 )

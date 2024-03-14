@@ -14,7 +14,11 @@ const questions = createSlice({
     },
     ADD_ANSWER_QUESTION(state, action) {
       // Remember that there is only one payload argument, so you need to bundle it up correctly into an object yourself when calling the createSlice auto generated actions, then it will be inside the action.payload object to use, (IE. you cannot call this action with more than one argument (which will be the action argument and become available in the action.payload property)
-      state[action.payload.question][action.payload.answer].votes.concat(action.payload.user)
+
+      const {question, answer, user } = action.payload;
+      const questionState = state[question];
+      // Then do the mutation with the temp variable
+      questionState[answer].votes.push(user);
     }
   }
 })

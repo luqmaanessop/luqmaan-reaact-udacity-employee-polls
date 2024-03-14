@@ -20,7 +20,6 @@ const Dashboard = () => {
 
   const questions = useSelector(orderedQuestions);
 
-
   return (
     <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-md mt-10">
       <h1 className="text-3xl font-bold mb-4">Dashboard:</h1>

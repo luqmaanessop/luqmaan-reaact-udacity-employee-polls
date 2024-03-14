@@ -4,6 +4,7 @@ const logger = (store) => (next) => (action) => {
   const returnValue = next(action);
   console.log(store.getState());
   console.groupEnd();
+
   return returnValue;
 }
 

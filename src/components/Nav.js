@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import {LOGOUT_AUTHED_USER} from '../features/auth/authSlice'
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 
-const Nav = ({dispatch}) => {
+const Nav = () => {
+    const dispatch = useDispatch();
     const {authedUserId, authedUserIcon} = useSelector(
         (state)=> ({
             authedUserId: state.authedUser.id,
